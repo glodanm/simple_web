@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container text-center">
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in object_list %}
+                    <tr>
+                        <td>{{ group.name }}</td>
+                        <td>{{ group.description }}</td>
+                        <td>
+                            <a href="{% url 'group-edit' group.pk %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'group-delete' group.pk %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'group-add' %}" class="btn btn-success ">Add Group</a>
+    </div>
+
+{% endblock %}

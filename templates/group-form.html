@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>{% if form.instance.pk %}Edit Group{% else %}Add Group{% endif %}</h2>
+    <br>
+    <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Name</label>
+        {% if form.name.value %}
+        <input type="text" class="form-control" id="name" name="name" value="{{ form.name.value }}" placeholder="Enter group name">
+        {% else %}
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter group name">
+        {% endif %}
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="description">Description</label>
+        {% if form.description.value %}
+        <textarea class="form-control" id="description" name="description" placeholder="Enter group description">{{ form.description.value }}</textarea>
+        {% else %}
+        <textarea class="form-control" id="description" name="description" placeholder="Enter group description"></textarea>
+        {% endif %}
+    </div>
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a href="{% url 'groups-list' %}" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+{% endblock %}

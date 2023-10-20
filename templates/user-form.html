@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>{% if form.instance.pk %}Edit User{% else %}Add User{% endif %}</h2>
+    <br>
+    <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Username</label>
+        {% if form.username.value %}
+        <input type="text" class="form-control" id="username" name="username" value="{{ form.username.value }}" placeholder="Enter username">
+        {% else %}
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+        {% endif %}
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="group">Group</label>
+        <select name="group" id="group" class="form-control">
+            <option value="">--- Select a group ---</option>
+            {% for group in groups %}
+            <option value="{{ group.id }}"
+                {% if form.instance.group == group %}
+                    selected
+                {% endif %}
+            >{{ group.name }}</option>
+        {% endfor %}  
+        </select>
+    </div>
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a href="{% url 'users-list' %}" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+{% endblock %}

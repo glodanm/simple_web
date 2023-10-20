@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container text-center">
+        <table class="table table-info">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Created</th>
+                    <th>Group</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in object_list %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.created }}</td>
+                        <td>{{ user.group }}</td>
+                        <td>
+                            <a href="{% url 'user-edit' user.pk %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'user-delete' user.pk %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'user-add' %}" class="btn btn-success">Add User</a>
+    </div>
+{% endblock %}
