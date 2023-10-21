@@ -66,3 +66,8 @@ pip install -r requirements.txt
 ```bash
 docker-compose -d --build
 ```
+
+7) To run tests:
+```bash
+docker-compose exec app python manage.py test
+```
